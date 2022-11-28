@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
-    GameObject particle;
+    public GameObject particle;
     void Update()
     {
         foreach (Touch touch in Input.touches)

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
-    float mainSpeed = 100.0f; //regular speed
-    float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
-    float maxShift = 1000.0f; //Maximum speed when holdin gshift
-    float camSens = 0.25f; //How sensitive it with mouse
+    public float mainSpeed; //regular speed
+    public float shiftAdd; //multiplied by how long shift is held.  Basically running
+    public float maxShift; //Maximum speed when holdin gshift
+    public float camSens; //How sensitive it with mouse
     private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
     private float totalRun = 1.0f;
 
@@ -21,7 +21,6 @@ public class CameraControls : MonoBehaviour
         //Mouse  camera angle done.  
 
         //Keyboard commands
-        float f = 0.0f;
         Vector3 p = GetBaseInput();
         if (p.sqrMagnitude > 0)
         { // only move while a direction key is pressed

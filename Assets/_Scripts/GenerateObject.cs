@@ -36,7 +36,7 @@ public class GenerateObject : MonoBehaviour
 
     IEnumerator InstantiateObject()
     {
-        timeDelay = Random.Range(0.2f, 2f);
+        timeDelay = Random.Range(2f, 5f);
         yield return new WaitForSeconds(timeDelay);
 
         if (time.timeValue > 0)

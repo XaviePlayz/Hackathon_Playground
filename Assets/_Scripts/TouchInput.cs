@@ -5,6 +5,7 @@ using UnityEngine;
 public class TouchInput : MonoBehaviour
 {
     public GameObject cube;
+    public Animator animation;
 
 
     [Header("Scripts")]
@@ -19,9 +20,17 @@ public class TouchInput : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
-                    scoremanager.score += 1;
+                    animation.SetTrigger("+1 Point");
                     Destroy(cube);
+                    StartCoroutine(WaitTillAnimationComplete());
                 }
         }
+    }
+
+    IEnumerator WaitTillAnimationComplete()
+    {
+        yield return new WaitForSeconds(0.5f);
+        scoremanager.score += 1;
+        StopCoroutine(WaitTillAnimationComplete());
     }
 }

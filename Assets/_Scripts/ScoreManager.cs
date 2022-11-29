@@ -8,22 +8,21 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance; 
     public Text scoreText;
 
-    int score = 0;
+    public int score = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        scoreText.text = score.ToString() + " POINTS";
-
-        private void Awake() 
-        {
-            instance = this;
-        }
+        instance = this;
     }
 
-    public void AddPoint()
+    void Start()
     {
-        score += 1;
-        scoreText.text = score.ToString() + " POINTS";
+        score = 0;
+    }
+
+    void Update()
+    {
+        scoreText.text = score.ToString() + " PTS";
     }
 }

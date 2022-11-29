@@ -6,6 +6,10 @@ public class TouchInput : MonoBehaviour
 {
     public GameObject cube;
 
+
+    [Header("Scripts")]
+    public ScoreManager scoremanager;
+
     void Update()
     {
         if (Input.touchCount > 0)
@@ -15,6 +19,7 @@ public class TouchInput : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
+                    scoremanager.score += 1;
                     Destroy(cube);
                 }
         }

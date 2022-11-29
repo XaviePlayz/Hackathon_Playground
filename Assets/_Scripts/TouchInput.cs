@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
-    public GameObject cube;
+    public List<GameObject> cubes;
     public Animator animator;
+    public int spawnedObjects;
 
 
     [Header("Scripts")]
     public ScoreManager scoremanager;
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     void Update()
     {
@@ -25,7 +22,8 @@ public class TouchInput : MonoBehaviour
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
                     animator.Play("1_Point");
-                    Destroy(cube);
+                    Destroy(cubes[spawnedObjects]);
+                    spawnedObjects++;
                     StartCoroutine(WaitTillAnimationComplete());
                 }
         }

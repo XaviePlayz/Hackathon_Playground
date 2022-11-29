@@ -18,22 +18,16 @@ public class GenerateObject : MonoBehaviour
         {
             spawners[i] = transform.GetChild(i).gameObject;
         }
-        StartCoroutine(Generate());
     }
 
-    IEnumerator Generate()
+    public void Generate()
     {
         int spawnerID = Random.Range(0, 5);
-
-        timeDelay = Random.Range(2f, 5f);
-        yield return new WaitForSeconds(timeDelay);
 
         if (time.timeValue > 0)
         {
             Instantiate(cube, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation);
             touch.cubes.Add(cube);
-
-            StartCoroutine(Generate());
         }
     }
 }

@@ -11,6 +11,7 @@ public class TouchInput : MonoBehaviour
 
     [Header("Scripts")]
     public ScoreManager scoremanager;
+    public GenerateObject generator;
 
     void Update()
     {
@@ -33,6 +34,7 @@ public class TouchInput : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         scoremanager.score += 1;
+        generator.Generate();
         StopCoroutine(WaitTillAnimationComplete());
     }
 }

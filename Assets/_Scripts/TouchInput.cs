@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
-    public List<GameObject> flowerObjects;
+    public GameObject flowerObject;
     public Animator animator;
-    public int spawnedObjects;
-
-
     [Header("Scripts")]
     public ScoreManager scoremanager;
     public GenerateObject generator;
@@ -23,10 +20,16 @@ public class TouchInput : MonoBehaviour
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
                     animator.Play("1_Point");
-                    Destroy(flowerObjects[spawnedObjects]);
-                    spawnedObjects++;
+                    Destroy(flowerObject);
                     StartCoroutine(WaitTillAnimationComplete());
                 }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.Play("1_Point");
+            Destroy(flowerObject);
+            StartCoroutine(WaitTillAnimationComplete());
         }
     }
 

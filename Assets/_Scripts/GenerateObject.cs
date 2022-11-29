@@ -7,7 +7,7 @@ public class GenerateObject : MonoBehaviour
     public Timer time;
 
     public GameObject[] spawners;
-    public GameObject flowerObject;
+    public GameObject flowerPrefab;
 
     public TouchInput touch;
 
@@ -26,8 +26,8 @@ public class GenerateObject : MonoBehaviour
 
         if (time.timeValue > 0)
         {
-            Instantiate(flowerObject, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation);
-            touch.flowerObjects.Add(flowerObject);
+            Instantiate(flowerPrefab, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation);
+            touch.flowerObject = GameObject.FindGameObjectWithTag("collectibleToDestroy");
         }
     }
 }

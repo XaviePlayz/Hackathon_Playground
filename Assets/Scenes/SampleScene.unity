@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1264251303}
+  score: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 594443586}
+  scoremanager: {fileID: 96567986}
 --- !u!1 &1956800824
 GameObject:
   m_ObjectHideFlags: 0

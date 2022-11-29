@@ -10,7 +10,7 @@ public class TouchInput : MonoBehaviour
 
     [Header("Scripts")]
     public ScoreManager scoremanager;
-    private void Start()
+    void Start()
     {
         animator = GetComponent<Animator>();
     }
@@ -24,7 +24,7 @@ public class TouchInput : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
-                    animator.SetTrigger("+1_Point");
+                    animator.Play("+1_Point");
                     Destroy(cube);
                     StartCoroutine(WaitTillAnimationComplete());
                 }

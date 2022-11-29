@@ -24,7 +24,7 @@ public class TouchInput : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
-                    animator.Play("+1_Point");
+                    animator.Play("1_Point");
                     Destroy(cube);
                     StartCoroutine(WaitTillAnimationComplete());
                 }

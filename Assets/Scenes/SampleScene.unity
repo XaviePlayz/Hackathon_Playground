@@ -555,6 +555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlowerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 60a0ccb669e095d41a341c0b98c2c673,
+        type: 3}
+      propertyPath: m_TagString
+      value: collectibleToDestroy
+      objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: 60a0ccb669e095d41a341c0b98c2c673,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

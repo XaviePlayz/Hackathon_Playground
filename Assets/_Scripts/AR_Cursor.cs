@@ -8,15 +8,24 @@ public class AR_Cursor : MonoBehaviour
     public GameObject cursor;
     public GameObject objectToPlace;
     public ARRaycastManager raycastManager;
-    // Start is called before the first frame update
+
+    public bool useCursor = true;
+
     void Start()
     {
-        
+        cursor.SetActive(useCursor);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (useCursor)
+        {
+            UpdateCursor();
+        }
+    }
+
+    void UpdateCursor() 
+    {
+        Vector2 screenPosition = Camera.main.ViewportToScreenPoint(new Vector2(0.5f, 0.5f));
     }
 }

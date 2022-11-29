@@ -1,23 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
+[RequireComponent(typeof(ARRaycastManager))]
 public class TouchInput : MonoBehaviour
 {
-    public GameObject particle;
+    public GameObject gameObjectToInstantiate;
+
+    private GameObject spawnedObject;
+    private ARRaycastManager _arRaycastManager;
+    private Vector2 touchPosition;
+
+    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+
+    private void Awake()
+    {
+        _arRaycastManager = GetComponent<ARRaycastManager>();
+    }
+
+    bool TryGetTouchPosition(out Vector2 touchPosition)
+    {
+        if (Input.touchCount > 0)
+        {
+            touchPosition = Input.GetTouch(index:0).position;
+            return true;
+        }
+
+        touchPosition = default;
+        return false;
+    }
+
     void Update()
     {
-        foreach (Touch touch in Input.touches)
+        if (!TryGetTouchPosition(out Vector2 touchPostion))
+            return;
+
+        if (_arRaycastManager.Raycast(touchPostion, hits, trackableTypes: TrackableType.PlaneWithinPolygon))
         {
-            if (touch.phase == TouchPhase.Began)
+            var hitPose = hits[0].pose;
+
+            if (spawnedObject == null)
             {
-                // Construct a ray from the current touch coordinates
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                if (Physics.Raycast(ray))
-                {
-                    // Create a particle if hit
-                    Instantiate(particle, transform.position, transform.rotation);
-                }
+                spawnedObject = Instantiate(gameObjectToInstantiate, hitPose.position, hitPose.rotation);
+            }
+            else
+            {
+                spawnedObject.transform.position = hitPose.position;
             }
         }
     }

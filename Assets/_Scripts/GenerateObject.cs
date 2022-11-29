@@ -7,7 +7,7 @@ public class GenerateObject : MonoBehaviour
     public Timer time;
 
     public GameObject[] spawners;
-    public GameObject cube;
+    public GameObject flowerObject;
 
     public TouchInput touch;
 
@@ -26,8 +26,8 @@ public class GenerateObject : MonoBehaviour
 
         if (time.timeValue > 0)
         {
-            Instantiate(cube, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation);
-            touch.cubes.Add(cube);
+            Instantiate(flowerObject, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation);
+            touch.flowerObjects.Add(flowerObject);
         }
     }
 }

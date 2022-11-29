@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
-    public List<GameObject> cubes;
+    public List<GameObject> flowerObjects;
     public Animator animator;
     public int spawnedObjects;
 
@@ -23,7 +23,7 @@ public class TouchInput : MonoBehaviour
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
                     animator.Play("1_Point");
-                    Destroy(cubes[spawnedObjects]);
+                    Destroy(flowerObjects[spawnedObjects]);
                     spawnedObjects++;
                     StartCoroutine(WaitTillAnimationComplete());
                 }

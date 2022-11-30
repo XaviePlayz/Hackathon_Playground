@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
-    public GameObject cube;
+    public GameObject flowerObject;
+    public Animator animator;
+    [Header("Scripts")]
+    public ScoreManager scoremanager;
+    public GenerateObject generator;
 
     void Update()
     {
@@ -15,8 +19,25 @@ public class TouchInput : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
                 if (hit.collider.gameObject.tag == "collectibleToDestroy")
                 {
-                    Destroy(cube);
+                    animator.Play("1_Point");
+                    Destroy(flowerObject);
+                    StartCoroutine(WaitTillAnimationComplete());
                 }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.Play("1_Point");
+            Destroy(flowerObject);
+            StartCoroutine(WaitTillAnimationComplete());
+        }
+    }
+
+    IEnumerator WaitTillAnimationComplete()
+    {
+        yield return new WaitForSeconds(0.5f);
+        scoremanager.score += 1;
+        generator.Generate();
+        StopCoroutine(WaitTillAnimationComplete());
     }
 }
